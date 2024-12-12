@@ -1,0 +1,36 @@
+<h2 class="text-base font-bold mb-4 p-4 bg-gray-200 text-blue-500">Current employees</h2>
+<div class="flex flex-col items-center flex-1 w-full p-4 ">
+  <ng-container *ngIf="currentEmployees.length === 0; else showData">
+    <div class="flex justify-center">
+      <p-image
+        src="assets/notfound.png"
+        alt="not found"
+        width="450"
+      />
+    </div>
+  </ng-container>
+  <ng-template #showData>
+    <div *ngFor="let employee of currentEmployees"
+         class="p-2 border-b border-gray-200 flex min-w-[450px] max-w-[90%] justify-between items-center">
+      <div>
+        <h3 class="font-semibold text-xl">{{ employee.empName }}</h3>
+        <p class="text-gray-500 text-sm">{{ employee.position }}</p>
+        <p class="text-gray-500 text-xs">From {{ employee.dateOfJoining | date }}</p>
+
+      </div>
+      <div>
+        <button pButton type="button" icon="pi pi-pencil" class="p-button-text p-button-info"
+                pTooltip="Edit Employee"
+                [tooltipPosition]="'left'"
+                (click)="editEmployee(employee)"></button>
+        <button pButton type="button" icon="pi pi-trash" class="p-button-text p-button-danger"
+                pTooltip="Delete Employee"
+                [tooltipPosition]="'left'"
+                (click)="deleteEmployee(employee.id!)"></button>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+</div>

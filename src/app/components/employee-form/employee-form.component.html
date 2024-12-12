@@ -1,0 +1,79 @@
+<div class="employee-list w-full  p-4 text-white mb-10" [ngClass]="{
+  'bg-blue-500': !editMode,
+  'bg-yellow-500': editMode
+}">
+  <ng-container *ngIf="editMode; else normalMode">
+    <div class="flex items-center ">
+      <h2 class="text-black font-semibold">Edit Employee</h2>
+    </div>
+  </ng-container>
+  <ng-template #normalMode>
+    <div class="flex items-center  ">
+      <h2>Add New Employee</h2>
+    </div>
+
+  </ng-template>
+</div>
+<div class="employee-form flex justify-center items-center w-full">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="w-[30rem]">
+    <div class="mb-4">
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-user text-blue-600" class=""/>
+        <input type="text" pInputText placeholder="Employee Name" class="w-full" formControlName="empName"/>
+      </p-iconField>
+    </div>
+    <div class="mb-4">
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-briefcase text-blue-600" class=""/>
+        <p-dropdown
+          formControlName="position"
+          [options]="roles"
+          [showClear]="true"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Select role"
+          styleClass="w-full"
+        />
+      </p-iconField>
+    </div>
+    <div class="mb-4 flex justify-between items-center gap-5">
+      <div>
+        <p-calendar id="dateOfJoining1"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    [showButtonBar]="true"
+                    formControlName="dateOfJoining"
+                    (onSelect)="updateMinDate($event)"
+                    dateFormat="yy-mm-dd"
+                    class="mt-1 block w-full"></p-calendar>
+      </div>
+
+      <div>
+        <span class="pi pi-arrow-right text-2xl mt-4"></span>
+      </div>
+
+      <div>
+        <p-calendar id="dateOfJoining2"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    [showButtonBar]="true"
+                    formControlName="dateOfLeaving"
+                    dateFormat="yy-mm-dd"
+                    [minDate]="minLeavingDate()"
+                    class="mt-1 block w-full"></p-calendar>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-5 mt-10">
+      <button pButton type="submit" label="Save"
+              [disabled]="employeeForm.invalid"
+              icon="pi pi-check"
+              class="p-button-raised" [ngClass]="{
+       'p-button-primary': !editMode,
+       'p-button-warning': editMode
+      }"></button>
+      <button pButton type="button" label="Cancel" icon="pi pi-times" class="p-button-raised p-button-secondary" (click)="clearForm()" ></button>
+    </div>
+
+  </form>
+</div>

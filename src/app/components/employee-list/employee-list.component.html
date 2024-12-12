@@ -1,0 +1,29 @@
+<div class="employee-list w-full flex items-center justify-between bg-blue-500 p-4 text-white">
+  <h2>Employee List</h2>
+  <button pButton
+          type="button"
+          icon="pi pi-plus"
+          label="Add Employee"
+          class="p-button-raised p-button-success"
+          (click)="addEmployee()"></button>
+</div>
+
+
+<ng-container *ngIf="employees().length === 0; else showData">
+  <div class="flex justify-center mt-10">
+    <p-image
+      src="assets/notfound.png"
+      alt="not found"
+      width="450"
+    />
+  </div>
+</ng-container>
+
+<ng-template #showData>
+  <div class=" w-full">
+    <app-current-employees [currentEmployees]="currentEmployees()"></app-current-employees>
+
+    <app-previous-employees [previousEmployees]="previousEmployees()"></app-previous-employees>
+
+  </div>
+</ng-template>
