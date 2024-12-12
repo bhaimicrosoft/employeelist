@@ -13,7 +13,7 @@
   <ng-template #showData>
     <!--List of Previous Employees-->
     <div *ngFor="let employee of previousEmployees"
-         class="p-2 border-b border-gray-200 flex flex-1 min-w-[450px] shrink  max-w-[90%] justify-between items-center ">
+         class="p-2 border-b border-gray-200 flex flex-1 min-w-[320px] md:min-w-[520px] shrink  max-w-[90%] justify-between items-center ">
       <div class="">
         <h3 class="font-semibold text-xl">{{ employee.empName }}</h3>
         <p class="text-gray-500 text-sm">{{ employee.position }}</p>

@@ -11,7 +11,7 @@
   </ng-container>
   <ng-template #showData>
     <div *ngFor="let employee of currentEmployees"
-         class="p-2 border-b border-gray-200 flex min-w-[450px] max-w-[90%] justify-between items-center">
+         class="p-2 border-b border-gray-200 flex min-w-[320px] md:min-w-[520px] max-w-[90%] justify-between items-center">
       <div>
         <h3 class="font-semibold text-xl">{{ employee.empName }}</h3>
         <p class="text-gray-500 text-sm">{{ employee.position }}</p>
